@@ -128,8 +128,8 @@ INSERT INTO tasks (name, description, priorite, statut) VALUES
 
 ## **Fonctionnalités principales**
 ### **Frontend :**
-- Boutons **Valide**, **Edit**, et **Delete** :
-  - **Valide** : Met à jour le statut en "Valide".
+- Boutons **Action**, **Edit**, et **Delete** :
+  - **Action** : Met à jour le statut en "Valide".
   - **Edit** : Ouvre un formulaire pour modifier la tâche.
   - **Delete** : Supprime la tâche.
 
