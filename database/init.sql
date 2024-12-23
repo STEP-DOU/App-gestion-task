@@ -1,4 +1,3 @@
-CREATE DATABASE IF NOT EXISTS gestion_tasks;
 USE gestion_tasks;
 
 
@@ -11,5 +10,5 @@ CREATE TABLE IF NOT EXISTS tasks (
 );
 
 INSERT INTO tasks (name, description, priorite) VALUES
-('basket', 'rien', 'Sports'),
-('PS4','rien', 'Jeux Video');
+('basket', 'rien', 'Haute'),
+('PS4','rien', 'Basse');
