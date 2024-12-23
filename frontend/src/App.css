@@ -1,0 +1,57 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+body{
+  font-family: Montserrat, sans-serif;
+}
+.container{
+  margin-inline: auto;
+  margin-inline-start: 80px;
+  margin-inline-end: 80px;
+}
+.title {
+  margin-top: 120px;
+  margin-bottom: 10px;
+}
+
+.register-box{
+  margin-top: 80px;
+  align-items: center;
+  margin-left: 2%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px,1fr));
+}
+
+.register-input, .register-button{
+  margin-top: 5px;
+  margin-right: 5px;
+  padding-inline: 5px;
+
+  border-style: solid;
+  border-radius: 8px;
+}
+
+.register-input{
+  height: 30px;
+}
+
+.register-inp{
+  margin-right: 5px;
+  padding-inline: 5px;
+  border-style: solid;
+  border-radius: 8px;
+}
+
+.register-inp{
+  height: 40px; 
+}
+.register-button{
+  height: 35px;
+  width: 170px;
+  background-color: rgb(101, 211, 134);
+}
+
+.App{
+  align-items: center;
+}
