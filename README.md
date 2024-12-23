@@ -106,8 +106,27 @@ cd gestion_app
 
 ## **Exemples de commandes MySQL**
 
+### **Commande pour acceder a mysql :**
+```sql 
+docker exec -it mysql bash
+
+```
+
+### **Commande pour se connecter a mysql :**
+```sql 
+mysql -u root -p
+
+```
+### **Créer la database :**
+```sql 
+CREATE DATABASE IF NOT EXISTS gestion_tasks;
+USE gestion_tasks;
+
+```
+
+
 ### **Créer la table `tasks` :**
-```sql
+```sql 
 CREATE TABLE IF NOT EXISTS tasks (
     idtasks INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
