@@ -1,7 +1,7 @@
 # **GESTION DE TACHE**
 
 ## **Description**
-Ce projet est une application CRUD (Créer, Lire, Mettre à jour, Supprimer) développée avec **React** pour le frontend, **Node.js** pour le backend, et **MySQL** comme base de données. L'application permet la gestion de tâches, y compris la création, l'affichage, la modification et la suppression de tâches avec des statuts dynamiques.
+Ce projet est une application de gestion de Tache (Créer, Lire, Mettre à jour, Supprimer) développée avec **React (Vite.js)** pour le frontend, **Node.js** pour le backend, et **MySQL** comme base de données. L'application permet la gestion de tâches, y compris la création, l'affichage, la modification et la suppression de tâches avec des statuts dynamiques.
 
 ---
 
@@ -38,7 +38,7 @@ Ce projet est une application CRUD (Créer, Lire, Mettre à jour, Supprimer) dé
 ## **Prérequis**
 - Node.js (v16+)
 - MySQL (v8+)
-- Docker et Docker Compose (facultatif)
+- Docker et Docker Compose 
 - Un éditeur de code (VSCode, WebStorm, etc.)
 
 ---
@@ -83,7 +83,7 @@ cd gestion_app
    ```
 3. Lancez l'application React :
    ```bash
-   npm start
+   npm run dev
    ```
 
 ### **4. MySQL**
@@ -168,6 +168,6 @@ docker-compose up --build
 ---
 
 ## **Contributeurs**
-- **DOUNGUE STEPHANE NOEL** : Développement backend.
+- **DOUNGUE STEPHANE NOEL** : Développement frontend & backend.
 - **DIFFO RONY ORNEL** : Développement frontend.
 
