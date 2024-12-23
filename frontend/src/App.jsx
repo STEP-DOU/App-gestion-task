@@ -5,8 +5,6 @@ import TaskTermine from './components/TaskTermine';
 import TaskFerme from './components/TaskFerme';
 import TachePending from './components/TachePending';
 import Task from './Task';
-import Footer from './components/Footer';
-
 
 const App = () => {
   return (
@@ -19,7 +17,6 @@ const App = () => {
                 <Route path="/task-pending" element={<TachePending />} />
                 <Route path="/task-ferme" element={<TaskFerme />} />
             </Routes>
-          <Footer/>
       </Router>
     </div>
   )
