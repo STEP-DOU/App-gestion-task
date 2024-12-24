@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS tasks (
     idtasks INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
-    priorite VARCHAR(255) NOT NULL
+    priorite VARCHAR(255) NOT NULL,
     statut VARCHAR(255) DEFAULT 'En Cours'
 );
 
