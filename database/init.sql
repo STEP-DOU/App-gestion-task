@@ -11,5 +11,5 @@ CREATE TABLE IF NOT EXISTS tasks (
 );
 
 INSERT INTO tasks (name, description, priorite, statut) VALUES
-('Tâche 1', 'Description de la tâche 1', 'Haute', 'Valide'),
-('Tâche 2', 'Description de la tâche 2', 'Moyenne', 'En Cours');
+('Tache 1', 'Description de la tache 1', 'Haute', 'Valide'),
+('Tache 2', 'Description de la tache 2', 'Moyenne', 'En Cours');

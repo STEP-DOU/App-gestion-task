@@ -1,97 +1,99 @@
-import React, { useState} from "react";
-import "./card.css"
+import React, { useState } from "react";
+import "./card.css";
 import FormDialog from "./dialog/dialog";
 import FormDialogo from "./dialog/dialo";
 import axios from "axios";
 
+const Badge = ({ label, color }) => (
+  <span className={`text-xs font-medium px-2.5 py-0.5 rounded-full ${color}`}>
+    {label}
+  </span>
+);
 
-const Card = (props) => {
-    const [open, setOpen] = React.useState(false);
-    const [opens, setOpens] = React.useState(false);
+const Card = ({ id, name, description, priorite, statut }) => {
+  const [dialogType, setDialogType] = useState(null);
 
-    const cardOpen = () => {
-        setOpen(true)
-    }
-    const cardOpens = () => {
-        setOpens(true)
-    }
-    const handleClose = () => {
-        setOpen(false);
-    };
+  const handleOpenDialog = (type) => setDialogType(type);
+  const handleCloseDialog = () => setDialogType(null);
 
-    const handleDeleteGame = () => {
-        axios.delete(`http://localhost:3001/delete/${props.id}`);
+  const handleDeleteGame = async () => {
+    if (window.confirm("Êtes-vous sûr de vouloir supprimer cette tâche ?")) {
+      try {
+        await axios.delete(`http://localhost:3001/delete/${id}`);
+        alert("Tâche supprimée avec succès !");
+      } catch (error) {
+        alert("Erreur lors de la suppression de la tâche.");
+      }
     }
-    
-    const StatusBadge = ({ statut }) => {
-        return (
-          <div>
-            {statut === "Valide" && (
-              <span className="bg-green-200 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                Valide
-              </span>
-            )}
-            {statut === "Close" && (
-              <span className="bg-red-200 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
-                Close
-              </span>
-            )}
-            {statut === "En Cours" && (
-              <span className="bg-gray-200 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">
-                En Cour
-              </span>
-            )}
+  };
+
+  const statusColors = {
+    Valide: "bg-green-200 text-green-800",
+    Close: "bg-red-200 text-red-800",
+    "En Cours": "bg-gray-200 text-gray-800",
+  };
+
+  const priorityColors = {
+    Basse: "bg-pink-200 text-gray-900",
+    Moyenne: "bg-blue-200 text-gray-800",
+    Haute: "bg-yellow-200 text-red-800",
+  };
+
+  return (
+    <>
+      {dialogType === "edit" && (
+        <FormDialog
+          open={dialogType === "edit"}
+          setOpen={handleCloseDialog}
+          id={id}
+          name={name}
+          description={description}
+          priorite={priorite}
+          statut={statut}
+        />
+      )}
+      {dialogType === "actions" && (
+        <FormDialogo
+          open={dialogType === "actions"}
+          setOpen={handleCloseDialog}
+          id={id}
+          name={name}
+          description={description}
+          priorite={priorite}
+          statut={statut}
+        />
+      )}
+      <div className="game-card">
+        <div className="info">
+          <h4>{name}</h4>
+          <p>{description}</p>
+          <div className="flex gap-8">
+            <p className="flex gap-1">
+              Priorité : <Badge label={priorite} color={priorityColors[priorite]} />
+            </p>
+            <p className="flex gap-1">
+              Statut : <Badge label={statut} color={statusColors[statut]} />
+            </p>
           </div>
-        );
-      };
-
-      const PrioriteBadge = ({ priorite }) => {
-        return (
-          <div>
-            {priorite === "Basse" && (
-              <span className="bg-pink-200 text-gray-900 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                Basse
-              </span>
-            )}
-            {priorite === "Haute" && (
-              <span className="bg-yellow-200 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
-                Haute
-              </span>
-            )}
-            {priorite === "Moyenne" && (
-              <span className="bg-blue-200 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">
-                Moyenne
-              </span>
-            )}
-          </div>
-        );
-      };
-    
-    return (
-        <>
-        <FormDialog open={open} setOpen={setOpen} id={props.id} name={props.name} description={props.description} priorite={props.priorite} statut={props.statut} />
-        <FormDialogo open={opens} setOpen={setOpens} id={props.id} name={props.name} description={props.description} priorite={props.priorite} statut={props.statut}/>
-        <div className="game-card">
-            <div className="info">
-                <h4>{props.name}</h4>
-                <p>{props.description}</p>
-                <div className="flex gap-8"><p className="flex gap-1">Priorite :<PrioriteBadge priorite={props.priorite}/></p>
-               <p className="flex gap-1">Status :  <StatusBadge statut={props.statut} /></p>
-               </div>
-            </div>
-            <div className="actions flex">
-
-            <button className="action flex gap-3" onClick={cardOpens}>
-                       <svg class="w-4 h-6 text-gray-100 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"/>
-                       </svg>Actions
-                    </button>
-                <button className="edit" onClick={cardOpen}>Edit</button>
-                <button className="delete" onClick={handleDeleteGame}>Delete</button>
-            </div>
         </div>
-        </>
-    );
+        <div className="actions flex">
+          <button
+            className="action flex gap-3"
+            onClick={() => handleOpenDialog("actions")}
+            aria-label="Voir les actions"
+          >
+            Actions
+          </button>
+          <button className="edit" onClick={() => handleOpenDialog("edit")}>
+            Edit
+          </button>
+          <button className="delete" onClick={handleDeleteGame}>
+            Delete
+          </button>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default Card;

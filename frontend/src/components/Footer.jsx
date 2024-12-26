@@ -1,28 +1,24 @@
-import React from 'react'
+import React from "react";
 
 const Footer = () => {
-  return (
-    <div>
-      <footer class="fixed bottom-0 left-0 z-20 w-full p-4 bg-white border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
-    <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="https://flowbite.com/" class="hover:underline">Doungue stephane - Diffo ornel™</a>. All Rights Reserved.
-    </span>
-    <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
-        <li>
-            <a href="#" class="hover:underline me-4 md:me-6">Taches</a>
-        </li>
-        <li>
-            <a href="#" class="hover:underline me-4 md:me-6">Tache Terminees</a>
-        </li>
-        <li>
-            <a href="#" class="hover:underline me-4 md:me-6">Tache en Cours</a>
-        </li>
-        <li>
-            <a href="#" class="hover:underline">Taches Fermees</a>
-        </li>
-    </ul>
-</footer>
-    </div>
-  )
-}
+  const currentYear = new Date().getFullYear();
 
-export default Footer
+  return (
+    <footer className="fixed bottom-0 left-0 z-20 w-full p-4 bg-gray-900 text-white border-t border-gray-600 shadow-md flex items-center justify-center">
+      <span className="text-sm text-center">
+        © {currentYear}{" "}
+        <a
+          href="https://flowbite.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:underline text-green-400"
+        >
+          Diffo Ornel&trade;
+        </a>
+        . Tous droits réservés.
+      </span>
+    </footer>
+  );
+};
+
+export default Footer;
