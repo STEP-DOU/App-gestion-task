@@ -4,5 +4,7 @@ FROM mysql:8.0
 # Copier le script d'initialisation
 COPY init.sql /docker-entrypoint-initdb.d/
 
+RUN apt-get update && apt-get install -y tzdata
+
 # Exposer le port par défaut de MySQL
 EXPOSE 3306

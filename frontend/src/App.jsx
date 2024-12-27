@@ -9,17 +9,17 @@ import Task from './Task';
 
 const App = () => {
   return (
-    <div className="App" style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+    <div className="App flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <Router>
         <Navbar /> {/* Barre de navigation */}
-        <div style={{ flex: 1 }}> {/* Conteneur pour pousser le footer en bas */}
+        <main className="flex-grow p-4"> {/* Conteneur principal pour le contenu */}
           <Routes>
             <Route path="/" element={<Task />} />
             <Route path="/task-termine" element={<TaskTermine />} />
             <Route path="/task-pending" element={<TachePending />} />
             <Route path="/task-ferme" element={<TaskFerme />} />
           </Routes>
-        </div>
+        </main>
         <Footer /> {/* Ajout du footer */}
       </Router>
     </div>

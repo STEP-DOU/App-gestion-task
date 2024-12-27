@@ -13,7 +13,7 @@ const Footer = () => {
           rel="noopener noreferrer"
           className="hover:underline text-green-400"
         >
-          Diffo Ornel&trade;
+          Diffo Ornel et Stephane&trade;
         </a>
         . Tous droits réservés.
       </span>

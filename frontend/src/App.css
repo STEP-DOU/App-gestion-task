@@ -11,6 +11,12 @@ body {
   background-color: #f4f4f9; /* Couleur de fond douce pour le confort visuel */
   color: #333; /* Couleur principale du texte */
   line-height: 1.6; /* Meilleure lisibilité */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transition pour mode sombre/clair */
+}
+
+body.dark {
+  background-color: #1a202c; /* Fond sombre */
+  color: #e2e8f0; /* Couleur de texte pour le mode sombre */
 }
 
 /* Centrage global des conteneurs */
@@ -27,6 +33,10 @@ body {
   text-align: center; /* Centrer le titre */
   font-size: 2rem; /* Taille plus grande pour attirer l'attention */
   color: #555; /* Couleur légèrement adoucie */
+}
+
+body.dark .title {
+  color: #cbd5e0; /* Couleur légèrement adoucie pour le mode sombre */
 }
 
 /* Grille pour les éléments d'enregistrement */
@@ -48,6 +58,13 @@ body {
   border: 1px solid #ddd; /* Bordure plus douce */
   border-radius: 8px;
   font-size: 1rem;
+}
+
+body.dark .register-input, 
+body.dark .register-inp {
+  border: 1px solid #4a5568; /* Bordure adoucie pour le mode sombre */
+  background-color: #2d3748; /* Fond sombre pour les champs */
+  color: #e2e8f0; /* Texte clair */
 }
 
 /* Style pour les inputs */
@@ -75,6 +92,15 @@ body {
   transform: scale(1.05); /* Léger agrandissement */
 }
 
+body.dark .register-button {
+  background-color: #68d391; /* Vert clair pour le mode sombre */
+  color: #1a202c; /* Texte sombre */
+}
+
+body.dark .register-button:hover {
+  background-color: #48bb78; /* Vert plus foncé pour le mode sombre */
+}
+
 /* Global alignement */
 .App {
   display: flex;
@@ -94,6 +120,12 @@ footer {
   padding: 10px 0;
   z-index: 1000;
   box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2); /* Ombre subtile */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark footer {
+  background-color: #2d3748; /* Couleur sombre pour le mode sombre */
+  color: #e2e8f0; /* Texte clair */
 }
 
 footer a {
