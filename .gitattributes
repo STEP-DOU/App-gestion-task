@@ -1,0 +1,7 @@
+# Assurez-vous que tous les fichiers texte utilisent LF dans le dépôt
+* text=auto
+
+# Pour les fichiers binaires, ne pas modifier les fins de ligne
+*.png binary
+*.jpg binary
+*.ico binary
