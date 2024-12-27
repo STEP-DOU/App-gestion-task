@@ -1,44 +1,54 @@
-# **GESTION DE TACHE**
+# **GESTION DE TÂCHE**
 
 ## **Description**
-Ce projet est une application de gestion de Tache (Créer, Lire, Mettre à jour, Supprimer) développée avec **React (Vite.js)** pour le frontend, **Node.js** pour le backend, et **MySQL** comme base de données. L'application permet la gestion de tâches, y compris la création, l'affichage, la modification et la suppression de tâches avec des statuts dynamiques.
+
+Ce projet est une application de gestion de tâches (CRUD : Créer, Lire, Mettre à jour, Supprimer) développée avec **React (Vite.js)** pour le frontend, **Node.js** pour le backend, et **MySQL** comme base de données. L'application permet une gestion intuitive et efficace des tâches avec des statuts dynamiques et une interface moderne.
 
 ---
 
 ## **Fonctionnalités**
-- **Créer des tâches** : Ajouter une tâche avec un nom, une description, une priorité et un statut.
-- **Afficher les tâches** : Voir toutes les tâches existantes avec leurs détails.
+
+- **Créer des tâches**    : Ajouter une tâche avec un nom, une description, une priorité et un statut.
+- **Afficher les tâches** : Visualiser toutes les tâches existantes avec leurs détails complets.
 - **Mettre à jour les tâches** : Modifier les informations ou le statut d'une tâche existante.
 - **Supprimer une tâche** : Supprimer une tâche spécifique.
-- **Statut dynamique** : Affichage des badges colorés en fonction du statut (Valide, Close, En Cour).
+- **Statut dynamique** : Affichage des badges colorés en fonction du statut (Valide, Close, En Cours).
+- **Animations** : Des animations ont été ajoutées lors des opérations (création, modification, suppression).
 
 ---
 
 ## **Technologies utilisées**
+
 ### **Frontend :**
+
 - React.js (Vite.js)
 - Axios pour les requêtes HTTP
 - CSS pour le style
-- react-route-dom v6
+- React Router v6
+- Framer Motion pour les animations
 
 ### **Backend :**
+
 - Node.js
 - Express.js
 - cors
 - MySQL pour la base de données
 
 ### **Base de données :**
+
 - MySQL avec des scripts d'initialisation (init.sql).
 
 ### **Orchestration :**
+
 - Docker & Docker Compose
 
 ---
 
 ## **Prérequis**
+
 - Node.js (v16+)
 - MySQL (v8+)
-- Docker et Docker Compose 
+- Docker et Docker Compose
 - Un éditeur de code (VSCode, WebStorm, etc.)
 
 ---
@@ -46,12 +56,14 @@ Ce projet est une application de gestion de Tache (Créer, Lire, Mettre à jour,
 ## **Installation**
 
 ### **1. Cloner le dépôt**
+
 ```bash
-git clone <URL_du_répo>
-cd gestion_app
+git clone git@github.com:STEP-DOU/App-gestion-task.git
+cd App-gestion-task
 ```
 
 ### **2. Backend**
+
 1. Accédez au dossier backend :
    ```bash
    cd backend
@@ -73,13 +85,14 @@ cd gestion_app
    ```
 
 ### **3. Frontend**
+
 1. Accédez au dossier frontend :
    ```bash
    cd frontend
    ```
 2. Installez les dépendances :
    ```bash
-   npm install
+   npm install --legacy-peer-deps
    ```
 3. Lancez l'application React :
    ```bash
@@ -87,12 +100,14 @@ cd gestion_app
    ```
 
 ### **4. MySQL**
+
 1. Configurez MySQL en important le fichier `init.sql` dans votre base de données.
 2. Assurez-vous que la table `tasks` est créée avec la colonne `statut`.
 
 ---
 
 ## **Utilisation**
+
 1. Ouvrez votre navigateur et accédez à :
    ```plaintext
    http://localhost:3000
@@ -106,27 +121,28 @@ cd gestion_app
 
 ## **Exemples de commandes MySQL**
 
-### **Commande pour acceder a mysql :**
-```sql 
+### **Commande pour accéder à MySQL :**
+
+```bash
 docker exec -it mysql bash
-
 ```
 
-### **Commande pour se connecter a mysql :**
-```sql 
+### **Commande pour se connecter à MySQL :**
+
+```bash
 mysql -u root -p
-
 ```
+
 ### **Créer la database :**
-```sql 
+
+```sql
 CREATE DATABASE IF NOT EXISTS gestion_tasks;
 USE gestion_tasks;
-
 ```
 
+### **Créer la table ********`tasks`******** :**
 
-### **Créer la table `tasks` :**
-```sql 
+```sql
 CREATE TABLE IF NOT EXISTS tasks (
     idtasks INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -137,6 +153,7 @@ CREATE TABLE IF NOT EXISTS tasks (
 ```
 
 ### **Ajouter des données :**
+
 ```sql
 INSERT INTO tasks (name, description, priorite, statut) VALUES
 ('Tâche 1', 'Description de la tâche 1', 'Haute', 'Valide'),
@@ -146,13 +163,16 @@ INSERT INTO tasks (name, description, priorite, statut) VALUES
 ---
 
 ## **Fonctionnalités principales**
+
 ### **Frontend :**
+
 - Boutons **Action**, **Edit**, et **Delete** :
   - **Action** : Met à jour le statut en "Valide".
   - **Edit** : Ouvre un formulaire pour modifier la tâche.
   - **Delete** : Supprime la tâche.
 
 ### **Backend :**
+
 - Route `/tasks` (GET) : Récupère toutes les tâches.
 - Route `/register` (POST) : Ajoute une nouvelle tâche.
 - Route `/edit` (PUT) : Met à jour une tâche.
@@ -163,16 +183,18 @@ INSERT INTO tasks (name, description, priorite, statut) VALUES
 ## **Docker**
 
 ### **1. Créer une image Docker**
+
 - Backend :
-   ```dockerfile
-   docker build -t backend .
-   ```
+  ```bash
+  docker build -t backend .
+  ```
 - Frontend :
-   ```dockerfile
-   docker build -t frontend .
-   ```
+  ```bash
+  docker build -t frontend .
+  ```
 
 ### **2. Lancer Docker Compose**
+
 ```bash
 docker-compose up --build
 ```
@@ -180,13 +202,17 @@ docker-compose up --build
 ---
 
 ## **Améliorations possibles**
+
 - Ajout d'une authentification utilisateur.
 - Implémentation de tests unitaires.
 - Gestion avancée des erreurs et validation des données.
+- Notifications à l'aide de Web Push.
+- Optimisation des performances avec le lazy loading des composants React.
 
 ---
 
 ## **Contributeurs**
+
 - **DOUNGUE STEPHANE NOEL** : Développement frontend & backend.
 - **DIFFO RONY ORNEL** : Développement frontend.
 
