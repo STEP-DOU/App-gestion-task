@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion"; // Import des animations
+import { motion, AnimatePresence } from "framer-motion";
 import "./App.css";
 import Axios from "axios";
 import Card from "./components/card";
@@ -8,9 +8,10 @@ import TaskSummary from "./components/TaskSummary";
 function Task() {
   const baseUrl = "http://localhost:3001";
 
-  const [values, setValues] = useState();
-  const [tasks, settasks] = useState();
+  const [values, setValues] = useState({});
+  const [tasks, settasks] = useState([]);
 
+  // Gérer les changements dans les champs du formulaire
   const handleChangeValues = (value) => {
     setValues((prevValue) => ({
       ...prevValue,
@@ -18,48 +19,68 @@ function Task() {
     }));
   };
 
+  // Ajouter une tâche
   const handleClickButton = () => {
+    if (!values.name || !values.description || !values.priorite) {
+      alert("Veuillez remplir tous les champs avant de soumettre !");
+      return;
+    }
+
     Axios.post(`${baseUrl}/register`, {
       name: values.name,
       description: values.description,
       priorite: values.priorite,
-    }).then((response) => {
-      console.log(response);
-      // Ajouter une animation lors de la création
-      settasks((prevTasks) => [
-        ...prevTasks,
-        {
-          idtasks: Date.now(), // ID temporaire
-          name: values.name,
-          description: values.description,
-          priorite: values.priorite,
-          statut: "En Cours",
-        },
-      ]);
-    });
+    })
+      .then(() => {
+        return Axios.get(`${baseUrl}/tasks`); // Recharger la liste des tâches
+      })
+      .then((response) => {
+        settasks(response.data);
+        setValues({}); // Réinitialiser les champs du formulaire
+      })
+      .catch((error) => {
+        console.error("Erreur lors de l'ajout ou du rechargement des tâches :", error);
+      });
   };
 
+  // Supprimer une tâche
+  const handleDeleteTask = (id) => {
+    Axios.delete(`${baseUrl}/delete/${id}`)
+      .then(() => {
+        settasks((prevTasks) => prevTasks.filter((task) => task.idtasks !== id));
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la suppression de la tâche :", error);
+      });
+  };
+
+  // Charger les tâches lors du premier rendu
   useEffect(() => {
-    Axios.get(`${baseUrl}/tasks`).then((response) => {
-      settasks(response.data);
-    });
+    Axios.get(`${baseUrl}/tasks`)
+      .then((response) => {
+        settasks(response.data);
+      })
+      .catch((error) => {
+        console.error("Erreur lors du chargement des tâches :", error);
+      });
   }, []);
 
   return (
     <div className="App">
       <div className="container">
-        <h1 className="title"></h1>
+        <h1 className="title">Gestion des Tâches</h1>
 
-        {/* -------------------------- Cart des nombres totaux des tâches (statistiques) */}
-        <TaskSummary />
+        {/* Résumé des tâches */}
+        <TaskSummary tasks={tasks} />
 
-        {/* --------------------Input des tâches------------------- */}
+        {/* Formulaire pour ajouter une tâche */}
         <div className="register-box">
           <input
             className="register-input"
             type="text"
             name="name"
-            placeholder="Title"
+            placeholder="Titre"
+            value={values.name || ""}
             onChange={handleChangeValues}
           />
           <input
@@ -67,13 +88,14 @@ function Task() {
             type="text"
             name="description"
             placeholder="Description"
+            value={values.description || ""}
             onChange={handleChangeValues}
           />
           <select
             className="register-inp"
             name="priorite"
+            value={values.priorite || ""}
             onChange={handleChangeValues}
-            defaultValue=""
           >
             <option value="" disabled>
               Choisissez une priorité
@@ -83,34 +105,33 @@ function Task() {
             <option value="Basse">Basse</option>
           </select>
           <button className="register-button" onClick={handleClickButton}>
-            Ajouter une Tâches
+            Ajouter une Tâche
           </button>
         </div>
         <br />
 
-        {/* Liste des tâches avec animation */}
+        {/* Liste des tâches avec animations */}
         <div className="cards">
           <AnimatePresence>
-            {typeof tasks !== "undefined" &&
-              tasks.map((task) => {
-                return (
-                  <motion.div
-                    key={task.idtasks}
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, x: 100 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Card
-                      id={task.idtasks}
-                      name={task.name}
-                      description={task.description}
-                      priorite={task.priorite}
-                      statut={task.statut}
-                    />
-                  </motion.div>
-                );
-              })}
+            {tasks &&
+              tasks.map((task) => (
+                <motion.div
+                  key={task.idtasks}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, x: 100 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Card
+                    id={task.idtasks}
+                    name={task.name}
+                    description={task.description}
+                    priorite={task.priorite}
+                    statut={task.statut}
+                    onDelete={handleDeleteTask}
+                  />
+                </motion.div>
+              ))}
           </AnimatePresence>
         </div>
       </div>
