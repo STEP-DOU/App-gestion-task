@@ -1,5 +1,17 @@
 # **GESTION DE TÂCHE**
 
+# Mon Projet Docker & Web
+
+## 🚀 Aperçu de la Page Web
+Voici une capture d'écran de la page web :
+
+![Aperçu de la page web](images/im1.png)
+
+## 🐳 Conteneurs Docker
+Voici l'état des conteneurs Docker :
+
+![Aperçu des conteneurs Docker](images/im2.png)
+
 ## **Description**
 
 Ce projet est une application de gestion de tâches (CRUD : Créer, Lire, Mettre à jour, Supprimer) développée avec **React (Vite.js)** pour le frontend, **Node.js** pour le backend, et **MySQL** comme base de données. L'application permet une gestion intuitive et efficace des tâches avec des statuts dynamiques et une interface moderne.
