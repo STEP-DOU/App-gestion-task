@@ -10,7 +10,7 @@ Voici une capture d'écran de la page web :
 ## 🐳 Conteneurs Docker
 Voici l'état des conteneurs Docker :
 
-![Aperçu des conteneurs Docker](images/im2.png)
+![Aperçu des conteneurs Docker](images/im22.png)
 
 ## **Description**
 
